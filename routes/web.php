@@ -11,3 +11,5 @@
 |
 */
 Route::get('/', 'CharacterController@index');
+Route::get('/create', 'CharacterController@create');
+Route::post('/store', 'CharacterController@store');
