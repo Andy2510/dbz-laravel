@@ -42,12 +42,14 @@ class CharacterController extends Controller
       $request->validate([
         'name' => 'required|unique:characters|max:100',
         'race' => 'required',
-        'pwrlevel' => 'required|numeric|max:10000',
-        'description' => 'required|max:255'
+        'power_level' => 'required|numeric|max:10000',
+        'description' => 'required|max:255|min:20'
     ]);
 
       $post = $request->except('_token');
       Character::create($post);
+
+      return redirect()->to('/');
     }
 
     /**

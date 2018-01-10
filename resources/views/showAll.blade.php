@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>DragonBall Characters Database</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -13,24 +13,29 @@
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-     <ul class="nav navbar-nav">
-        <li><a href="/create">Create</a></li>
-      </ul>
+     <h2 class="text-center">
+       <a href="{{ route('create') }}">Create your character!</a>
+     </h2>
+
    </div>
 </nav>
 
 <div class="container bg-3 text-center">
   <h3>Dragon Ball Characters</h3><br>
   <div class="row">
-    <div class="col-sm-3">
-      <ul class=list-group>
+
+      {{-- <ul class=list-group> --}}
+
 
           @foreach ($characters as $character)
-            <li>{{ $characters }}</li>
+            <div class="col-sm-3">
+              {{-- {{ $character }} --}}
+              <a href="{{ route('index') }}" class="btn btn-danger btn-xs">X </a>{{ $character-> name}}
+            </div>
           @endforeach
 
-      </ul>
-    </div>
+      {{-- </ul> --}}
+  </div>
 
   </div>
 </div><br>
