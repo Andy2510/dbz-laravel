@@ -43,7 +43,7 @@ class CharacterController extends Controller
         'name' => 'required|unique:characters|max:100',
         'race' => 'required',
         'power_level' => 'required|numeric|max:10000',
-        'description' => 'required|max:255|min:20'
+        'description' => 'required|max:255|min:15'
     ]);
 
       $post = $request->except('_token');
@@ -94,6 +94,8 @@ class CharacterController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $id = Character::findOrFail($id);
+        $id->delete();
+        return redirect()->back();
     }
 }

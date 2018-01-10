@@ -26,11 +26,10 @@
 
       {{-- <ul class=list-group> --}}
 
-
           @foreach ($characters as $character)
             <div class="col-sm-3">
               {{-- {{ $character }} --}}
-              <a href="{{ route('index') }}" class="btn btn-danger btn-xs">X </a>{{ $character-> name}}
+              <a href="{{ route('destroy', $character->id) }}" class="btn btn-danger btn-xs">X </a><span>  </span>{{ $character-> name }}
             </div>
           @endforeach
 
