@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>DragonBall Characters Database</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+@extends('layout')
 
-</head>
-<body>
+@section('content')
 
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
@@ -28,8 +19,9 @@
 
           @foreach ($characters as $character)
             <div class="col-sm-3">
-              {{-- {{ $character }} --}}
-              <a href="{{ route('destroy', $character->id) }}" class="btn btn-danger btn-xs">X </a><span>  </span>{{ $character-> name }}
+              {{ $character-> name }}
+              <a href="{{ route('edit', $character->id) }}" class="btn btn-info btn-xs">Edit </a><span>  </span>
+              <a href="{{ route('destroy', $character->id) }}" class="btn btn-danger btn-xs">X </a><span>  </span>
             </div>
           @endforeach
 
@@ -59,6 +51,4 @@
     </div>
   </div>
 </div><br><br> -->
-
-</body>
-</html>
+@endsection

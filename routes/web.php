@@ -13,5 +13,7 @@
 Route::get('/', 'CharacterController@index')->name('index');
 Route::get('/create', 'CharacterController@create')->name('create');
 Route::post('/store', 'CharacterController@store')->name('store');
+// post methodams nereikia kurti blade`o
 Route::get('/destroy/{id}', 'CharacterController@destroy')->name('destroy');
-Route::get('/edit/{ id }', 'CharacterController@edit')->name('edit');
+Route::get('/edit/{id}', 'CharacterController@edit')->name('edit');
+Route::post('/update/{id}', 'CharacterController@update')->name('update');

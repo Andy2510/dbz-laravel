@@ -39,12 +39,8 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-      $request->validate([
-        'name' => 'required|unique:characters|max:100',
-        'race' => 'required',
-        'power_level' => 'required|numeric|max:10000',
-        'description' => 'required|max:255|min:15'
-    ]);
+      // iskvieciame metoda
+      $this->validateRequest($request);
 
       $post = $request->except('_token');
       Character::create($post);
@@ -71,7 +67,10 @@ class CharacterController extends Controller
      */
     public function edit($id)
     {
-        //
+      $character = Character::findOrFail($id);
+      return view('edit', [
+        'character' => $character
+      ]);
     }
 
     /**
@@ -83,7 +82,12 @@ class CharacterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $this->validateRequest($request, $id);
+
+      $character = Character::findOrFail($id);
+      $post = $request->except('_token');
+      $character->update($post);
+      return redirect()->to('/');
     }
 
     /**
@@ -97,5 +101,21 @@ class CharacterController extends Controller
         $id = Character::findOrFail($id);
         $id->delete();
         return redirect()->back();
+    }
+
+    private function validateRequest($request, $id = null)
+    {
+      $rules = [
+        'name' => 'required|max:100|unique:characters',
+        'race' => 'required',
+        'power_level' => 'required|numeric|max:10000',
+        'description' => 'required|max:255|min:15'
+      ];
+
+      if($id != null) {
+        $rules['name'].=',name,'. $id .',id';
+      }
+
+      $request->validate($rules);
     }
 }
