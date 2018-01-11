@@ -11,4 +11,7 @@ class Character extends Model
   ];
 
   protected $table = 'characters';
+  public function photos() {
+    return $this->hasMany('App\Photo');
+  }
 }

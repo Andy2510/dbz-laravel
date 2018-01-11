@@ -60,6 +60,11 @@
 </div>
 </div>
 
+{{-- <div class="form-group">
+    <a href="{{ route('create-photo/{character_id}') }}" class="btn btn-default">Back</a>
+</div> --}}
+
+
 <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">
     <button type="submit" class="btn btn-success">Submit</button>

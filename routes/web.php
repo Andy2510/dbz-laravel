@@ -17,3 +17,5 @@ Route::post('/store', 'CharacterController@store')->name('store');
 Route::get('/destroy/{id}', 'CharacterController@destroy')->name('destroy');
 Route::get('/edit/{id}', 'CharacterController@edit')->name('edit');
 Route::post('/update/{id}', 'CharacterController@update')->name('update');
+Route::get('/create-photo/{character_id}', 'PhotosController@create')->name('create-photo');
+Route::post('/store-photo/{character_id}', 'PhotosController@store')->name('store-photo');

@@ -20,8 +20,17 @@
           @foreach ($characters as $character)
             <div class="col-sm-3">
               {{ $character-> name }}
+
+              <div>
+              @foreach($character->photos as $photo)
+                <img src="{{ str_replace('public', 'storage', $photo->file_name) }}" class="img-responsive">
+              @endforeach
+              </div>
+
+              <div>
               <a href="{{ route('edit', $character->id) }}" class="btn btn-info btn-xs">Edit </a><span>  </span>
               <a href="{{ route('destroy', $character->id) }}" class="btn btn-danger btn-xs">X </a><span>  </span>
+            </div>
             </div>
           @endforeach
 
