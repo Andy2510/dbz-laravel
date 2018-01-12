@@ -10,9 +10,9 @@
         {!! csrf_field() !!}
 
         <p>Select image to upload for {{ $character->name }}:</p>
-        <input type="file" name="upload-img" value="">
+        <input type="file" name="upload-img">
         <br>
-        <input type="submit" name="" value="Add Photo" class="btn btn-success">
+        <input type="submit" name="submit" value="Upload Image" class="btn btn-success pull-left">
         <br>
 
       </form>

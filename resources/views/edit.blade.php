@@ -3,6 +3,7 @@
 @section('content')
 
   <div class="container">
+    <h2 class="text-center">Edit Character</h2>
   <form class="form-horizontal" action="{{ route('update', $character->id) }}" method="post">
     {!! csrf_field() !!}
     <div class="form-group

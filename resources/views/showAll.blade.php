@@ -17,17 +17,20 @@
 
       {{-- <ul class=list-group> --}}
 
-          @foreach ($characters as $character)
-            <div class="col-sm-3">
+              @foreach ($characters as $character)
+                <div class="col-md-3">
               {{ $character-> name }}
+            <div>
 
-              <div>
               @foreach($character->photos as $photo)
-                <img src="{{ str_replace('public', 'storage', $photo->file_name) }}" class="img-responsive">
+                <img src="{{ $photo->url }}" class="img-responsive">
+                {{-- {{ dump($character->photos)}} --}}
               @endforeach
               </div>
 
               <div>
+              <a href="{{ route('create-photo', $character->id) }}" class="btn btn-danger btn-xs">Photo </a><span>  </span>
+              
               <a href="{{ route('edit', $character->id) }}" class="btn btn-info btn-xs">Edit </a><span>  </span>
               <a href="{{ route('destroy', $character->id) }}" class="btn btn-danger btn-xs">X </a><span>  </span>
             </div>

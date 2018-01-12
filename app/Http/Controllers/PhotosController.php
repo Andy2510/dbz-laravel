@@ -50,7 +50,7 @@ class PhotosController extends Controller
       Photo::create($post);
 
       $post = $request->except('_token');
-      return redirect()->to('/index');
+      return redirect()->route('index');
     }
 
     /**

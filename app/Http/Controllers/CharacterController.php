@@ -98,8 +98,16 @@ class CharacterController extends Controller
      */
     public function destroy($id)
     {
-        $id = Character::findOrFail($id);
-        $id->delete();
+        $character = Character::findOrFail($id);
+
+        foreach ($character->photos as $photos) {
+          if(file_exists(storage_path('app/'. $photos->file_name))){
+          unlink(storage_path('app/'.$photos->file_name));
+          echo $photos." was deleted";
+        }
+        $photos -> delete();
+
+        $character->delete();
         return redirect()->back();
     }
 
