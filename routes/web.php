@@ -19,3 +19,5 @@ Route::get('/edit/{id}', 'CharacterController@edit')->name('edit');
 Route::post('/update/{id}', 'CharacterController@update')->name('update');
 Route::get('/create-photo/{character_id}', 'PhotosController@create')->name('create-photo');
 Route::post('/store-photo/{character_id}', 'PhotosController@store')->name('store-photo');
+Route::get('/show/{id}', 'CharactersController@show')->name('show');
+Route::get('/delete-photo/{id}', 'PhotosController@destroy')->name('destroy-photo');

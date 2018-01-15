@@ -39,9 +39,13 @@ class PhotosController extends Controller
      */
     public function store(Request $request, $character_id)
     {
-      $path = $request->file('upload-img')->storePublicly('public/photos');
+      $validatedData = $request->validate([
+        'upload' => 'required|mimes:jpeg,bmp,png|max:6000'
+    ]);
+      $path = $request->file('upload')->storePublicly('public/photos');
       // file siuo atveju yra upload'o input'o name
       // store cia reiskia folderis, i kuri keliaus fotkes
+      // 'upload' turi buti visur vienodas (ir 45, ir 43 eilutej, ir creaphoto.blade faile ties validacija)
       $post = [
         'file_name' => $path,
         'character_id' => $character_id
@@ -92,6 +96,12 @@ class PhotosController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $photo = Photo::findOrFail($id);
+          if (file_exists(storage_path('app/'.$photo->file_name))){
+              unlink(storage_path('app/'.$photo->file_name));
+              echo $photo." was deleted";
+          }
+      $photo->delete();
+     return redirect()->back();
     }
 }

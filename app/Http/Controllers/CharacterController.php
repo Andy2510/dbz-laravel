@@ -45,7 +45,7 @@ class CharacterController extends Controller
       $post = $request->except('_token');
       Character::create($post);
 
-      return redirect()->to('/');
+      return redirect()->route('index');
     }
 
     /**
@@ -56,7 +56,10 @@ class CharacterController extends Controller
      */
     public function show($id)
     {
-        //
+      $character = Character::findOrFail($id);
+      return view('edit', [
+        'character' => $character
+      ]);
     }
 
     /**
@@ -96,20 +99,19 @@ class CharacterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $character = Character::findOrFail($id);
-
-        foreach ($character->photos as $photos) {
-          if(file_exists(storage_path('app/'. $photos->file_name))){
-          unlink(storage_path('app/'.$photos->file_name));
-          echo $photos." was deleted";
-        }
-        $photos -> delete();
-
-        $character->delete();
-        return redirect()->back();
-    }
+      public function destroy($id)
+      {
+           $character = Character::findOrFail($id);
+           foreach ($character->photos as $photo){
+               if (file_exists(storage_path('app/'.$photo->file_name))){
+                   unlink(storage_path('app/'.$photo->file_name));
+                   echo $photo." was deleted";
+               }
+               $photo->delete();
+           }
+           $character->delete();
+          return redirect()->back();
+      }
 
     private function validateRequest($request, $id = null)
     {
@@ -120,7 +122,7 @@ class CharacterController extends Controller
         'description' => 'required|max:255|min:15'
       ];
 
-      if($id != null) {
+      if($id != NULL) {
         $rules['name'].=',name,'. $id .',id';
       }
 
