@@ -57,7 +57,7 @@ class CharacterController extends Controller
     public function show($id)
     {
       $character = Character::findOrFail($id);
-      return view('edit', [
+      return view('showCharacter', [
         'character' => $character
       ]);
     }

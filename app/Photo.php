@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
   protected $fillable = [
-      'file_name', 'character_id'
+      'file_name',
+      'character_id'
   ];
 
   public function getUrlAttribute()
