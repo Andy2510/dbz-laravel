@@ -24,9 +24,9 @@
 
                <div class="caption">
                  <h3>{{ $character->name }}</h3>
-                   <p><a href="{{ route('edit', $character->id) }}" class="btn btn-primary" role="button">Edit</a>
+                   <p><a href="{{ route('edit', $character->id) }}" class="btn btn-default" role="button">Edit</a>
                    <a href="{{ route('destroy', $character->id) }}" class="btn btn-default" role="button">Delete</a>
-                   <a href="{{ route('create-photo', $character->id) }}" class="btn btn-default" role="button">Add photo</a></p>
+                   <a href="{{ route('create-photo', $character->id) }}" class="btn btn-primary" role="button">Add photo</a></p>
            </div>
          </div>
        </div>
