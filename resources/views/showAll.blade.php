@@ -11,11 +11,11 @@
    </div>
 </nav>
 
-<div class="container bg-3 text-center">
+<div class="container text-center">
   <h3>Dragon Ball Characters</h3><br>
   <div class="row">
      @foreach ($characters as $character)
-       <div class="col-sm-6 col-md-4">
+       <div class="col-xs-3">
          <div class="thumbnail">
 
              @if ($character->featured_photo !== NULL)
@@ -24,8 +24,10 @@
 
                <div class="caption">
                  <h3>{{ $character->name }}</h3>
+                   <p><a href="{{ route('edit', $character->id) }}" class="btn btn-primary" role="button">Edit</a>
+                   <a href="{{ route('destroy', $character->id) }}" class="btn btn-default" role="button">Delete</a>
+                   <a href="{{ route('create-photo', $character->id) }}" class="btn btn-default" role="button">Add photo</a></p>
            </div>
-
          </div>
        </div>
      @endforeach

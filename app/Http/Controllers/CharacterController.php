@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\PhotoHelper;
+use App\Helpers\CharacterHelper;
 use Illuminate\Http\Request;
 use App\Character;
 
@@ -12,10 +12,10 @@ class CharacterController extends Controller
    * The user repository instance.
    * var PhotoHelper
    */
-   private $photoHelper;
+   private $characterHelper;
 
-   public function __construct(PhotoHelper $photoHelper) {
-      $this->photoHelper = $photoHelper;
+   public function __construct(CharacterHelper $characterHelper) {
+      $this->characterHelper = $characterHelper;
     }
 
     /**
@@ -113,10 +113,9 @@ class CharacterController extends Controller
       public function destroy($id)
       {
         $character = Character::findOrFail($id);
-        foreach ($character->photos as $photo){
-          $this->photoHelper->deleteOne($photo);
-        }
-        $character->delete();
+
+        $this->characterHelper->deleteOne($character);
+
         return redirect()->route('index');
       }
 
